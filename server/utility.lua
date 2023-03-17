@@ -5,7 +5,7 @@ local continueCheck = true
 
 CreateThread(function()
     if curResName ~= 'zrx_panicbutton' then
-        resourceName = 'zrx_panicbutton (' .. curResName .. ')'
+        resourceName = ('zrx_repairkit (%s)'):format(curResName)
     end
 end)
 

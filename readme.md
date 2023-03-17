@@ -5,8 +5,9 @@ This is an advanced panicbutton system for fivem
 <b>Features:</b>
 - Key based
 - Cooldown
-- Panicbuttons for everything
+- Multiple panicbutton support
 - Fancy discord log
+- Update checker
 - 0.0 ms on idle
 - 0.0 ms while in use
 
