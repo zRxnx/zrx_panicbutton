@@ -1,21 +1,33 @@
 # zRxnx's Advanced Panicbutton System
 
-This is an advanced panicbutton system for fivem
+An advanced panicbutton system for FiveM
 
-<b>Features:</b>
-- Key based
-- Cooldown
+## About
+
+### Features
+
+- Template system
 - Multiple panicbutton support
-- Fancy discord log
+- Notifications
+- Discord log with many information
 - Update checker
+- Optimized
+- Synced
 - 0.0 ms on idle
 - 0.0 ms while in use
 
+### Exports
+
+- hasCooldown (client)
+- activeBlips (client & server)
+
 ## Requirements
-- es_extended
-- esx_progressbar (recommended)
+
+- es_extended (> 1.6.0)
+- ox_lib (latest)
 
 ## Installation
-- Download script
+
+- Download script from Releases
 - Put script in your `resources` directory
 - Add `ensure zrx_panicbutton` in your `server.cfg`

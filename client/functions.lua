@@ -1,10 +1,10 @@
-Cooldown = function()
-	if type(Config.Cooldown) ~= 'number' then return end
+StartCooldown = function()
+    if not Config.Cooldown then return end
+    COOLDOWN = true
 
-	CreateThread(function()
-		if COOLDOWN then
-			Wait(Config.Cooldown)
-			COOLDOWN = false
-		end
-	end)
+    CreateThread(function()
+        SetTimeout(Config.Cooldown * 1000, function()
+            COOLDOWN = false
+        end)
+    end)
 end
