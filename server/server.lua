@@ -49,21 +49,18 @@ RegisterNetEvent('zrx_panicbutton:server:syncBlip', function(coords, index, stre
     local xTarget
     for player, state in pairs(PLAYERS) do
         xTarget = ESX.GetPlayerFromId(player)
-        if not xTarget then goto continue end
 
         if Config.Templates[index].jobs[xTarget.job.name] then
             Config.Notification(player, (Strings.panicbutton):format(street, Config.Templates[index].name))
-            TriggerClientEvent('zrx_panicbutton:client:startBlip', player, vector3(coords.x, coords.y, coords.z), index)
+            TriggerClientEvent('zrx_panicbutton:client:startSyncBlip', player, vector3(coords.x, coords.y, coords.z), index)
         end
-
-        ::continue::
     end
 end)
 
 CreateThread(function()
 	while true do
 		for i, data in pairs(BLIP_DATA) do
-			if data.time <= 1 then
+			if data.time == 0 then
                 for player, state in pairs(PLAYERS) do
                     TriggerClientEvent('zrx_panicbutton:server:removeSyncBlip', player, i, data.street)
                 end

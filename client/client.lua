@@ -40,12 +40,16 @@ end)
 RegisterKeyMapping(Config.CommandName, Strings.keyMapping, 'keyboard', Config.Key)
 TriggerEvent('chat:addSuggestion', '/' .. Config.CommandName, Strings.commandSug, {})
 
-RegisterNetEvent('zrx_panicbutton:client:startBlip', function(coords, index)
+RegisterNetEvent('zrx_panicbutton:client:startSyncBlip', function(coords, index)
     BLIP_DATA[#BLIP_DATA + 1] = {
 		blip = Config.Templates[index].blip(vector3(coords.x, coords.y, coords.z)),
 		time = Config.Templates[index].time,
         index = index
 	}
+
+    if Config.Sounds then
+        Config.PlaySound()
+    end
 end)
 
 RegisterNetEvent('zrx_panicbutton:server:removeSyncBlip', function(index, street)

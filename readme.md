@@ -26,6 +26,10 @@ An advanced panicbutton system for FiveM
 - es_extended (> 1.6.0)
 - ox_lib (latest)
 
+## Preview
+
+### [Video](https://youtu.be/24JW6bGE51s?si=R3ZgplzxQjBQ3ewP)
+
 ## Installation
 
 - Download script from Releases
