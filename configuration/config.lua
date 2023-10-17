@@ -1,9 +1,10 @@
 Config = {}
 
 --| Discord Webhook in 'configuration/webhook.lua'
-Config.CommandName = 'panicbutton'
+Config.Command = 'panicbutton'
 Config.Key = 'K' --| Key to start a panic | NOTE: Its a Keymapping
 Config.Cooldown = 20 --| Cooldown between panics | In seconds
+Config.Sounds = true --| Activate sound
 Config.CheckForUpdates = true --| Check for updates?
 
 Config.Templates = {
@@ -59,30 +60,26 @@ Config.Templates = {
     },
 }
 
+--| Place here your sound actions
+Config.PlaySound = function()
+    for i = 1, 5, 1 do
+        PlaySoundFrontend(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET", 1)
+        Wait(1000)
+    end
+end
+
 --| Place here your punish actions
 Config.PunishPlayer = function(player, reason)
     if not IsDuplicityVersion() then return end
-    if Webhook.Settings.punish then
-        DiscordLog(player, 'PUNISH', reason, 'punish')
+    if Webhook.Links.punish:len() > 0 then
+        local message = ([[
+            The player got punished
+
+            Reason: **%s**
+        ]]):format(reason)
+
+        CORE.Server.DiscordLog(player, 'PUNISH', message, Webhook.Links.punish)
     end
 
     DropPlayer(player, reason)
-end
-
---| Place here your notification
-Config.Notification = function(player, msg)
-    if IsDuplicityVersion() then
-        TriggerClientEvent('esx:showNotification', player, msg, 'info')
-    else
-        ESX.ShowNotification(msg)
-    end
-end
-
---| Place here your esx Import
-Config.EsxImport = function()
-	if IsDuplicityVersion() then
-		return exports.es_extended:getSharedObject()
-	else
-		return exports.es_extended:getSharedObject()
-	end
 end
