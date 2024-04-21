@@ -13,7 +13,7 @@ StartPanicbutton = function()
 
     local pedCoords, streetName
     for k, data in pairs(Config.Templates) do
-        if data.mainJob == CORE.Bridge.getVariables().job.name then
+        if data.mainJob == CORE.Bridge.getPlayerObject().job.name then
             pedCoords = GetEntityCoords(cache.ped)
             streetName = GetStreetNameFromHashKey(GetStreetNameAtCoord(pedCoords.x, pedCoords.y, pedCoords.z))
 

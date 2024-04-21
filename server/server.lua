@@ -1,3 +1,4 @@
+---@diagnostic disable: cast-local-type, need-check-nil
 CORE = exports.zrx_utility:GetUtility()
 BLIP_DATA, PLAYER_CACHE, PLAYERS = {}, {}, {}
 local TriggerClientEvent = TriggerClientEvent
@@ -33,7 +34,7 @@ AddEventHandler('playerDropped', function()
 end)
 
 RegisterNetEvent('zrx_panicbutton:server:syncBlip', function(coords, index, street)
-    local xPlayer = CORE.Bridge.getVariables(source)
+    local xPlayer = CORE.Bridge.getPlayerObject(source)
 
     if not coords or not index or not street or type(coords) ~= 'vector3' or type(index) ~= 'number' or type(street) ~= 'string' then
         return Config.PunishPlayer(xPlayer.player, 'Tried to trigger "zrx_panicbutton:server:syncBlip"')
@@ -63,7 +64,7 @@ RegisterNetEvent('zrx_panicbutton:server:syncBlip', function(coords, index, stre
 
     local xTarget
     for player, state in pairs(PLAYERS) do
-        xTarget = CORE.Bridge.getVariables(player)
+        xTarget = CORE.Bridge.getPlayerObject(player)
 
         if Config.Templates[index].jobs[xTarget.job.name] then
             CORE.Bridge.notification(player, (Strings.panicbutton):format(street, Config.Templates[index].name))
